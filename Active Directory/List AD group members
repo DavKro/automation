@@ -1,0 +1,21 @@
+#Import Active Directory Module
+Import-Module ActiveDirectory
+
+#Display warning
+Write-Host "This script lists users in a group" -ForegroundColor Yellow
+
+#Get standard variables
+$_Date=Get-Date -Format "MM/dd/yyyy"
+$_Server=Read-Host "Enter the domain you want to search"
+$_Creds=Get-Credential
+
+while($true){
+
+#Requests user input username
+$_Group=Read-Host "Enter group name to list users for"
+Get-ADGroupMember -Identity $_Group -Recursive -Server $_Server -Credential $_Creds | Get-ADUser -Property DisplayName | Select Name,ObjectClass,DisplayName
+
+#Hard Stop for Script to keep window open
+Write-Host "Users for $_Group have been listed" -ForegroundColor Green
+Write-Host ""
+}
