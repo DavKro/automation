@@ -1,12 +1,12 @@
 ﻿#Display warning
-Write-Host "This script restarts targeted" -ForegroundColor Yellow
+Write-Host "This script restarts targeted machine" -ForegroundColor Yellow
 
 
 $_Creds=Get-Credential
 
 while($true){
 
-    #Requests user input username
+    #Requests user input
     Restart-Computer -ComputerName (Read-Host "ComputerName") -Credential $_Creds -Force
 
 
